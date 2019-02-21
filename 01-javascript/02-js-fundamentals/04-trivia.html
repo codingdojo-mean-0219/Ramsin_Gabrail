@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Trivia Game</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $.get("https://opentdb.com/api.php?amount=10", display)
+        });
+        function display(data) {
+            for (var i = 0; i < data.results.length; i++) {
+                $('body').append("<h2>" + data.results[i].question + "</h2>")
+                $('body').append("<h4>" + data.results[i].correct_answer + "</h4>")
+                for (var j = 0; j <data.results[i].incorrect_answers.length; j++) {
+                    $('body').append("<h4>" + data.results[i].incorrect_answers[j] + "</h4>")
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+
+</body>
+</html>

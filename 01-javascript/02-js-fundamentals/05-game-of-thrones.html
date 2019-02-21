@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <title>Game of Thrones</title>
+</head>
+<body>
+    <div id="containter">
+        <div class="house">
+            <img id="stark" src="images/stark.jpg" alt="Stark">
+            <img id="targ" src="images/targaryen.jpg" alt="Targaryen">
+            <img id="lan" src="images/lannister.jpg" alt="Lannister">
+            <img id="bar" src="images/baratheon.png" alt="Baratheon">
+        </div>
+
+    </div>
+    <fieldset id="info">
+        <legend><b>House Details</b></legend>
+        <h3 id="name">
+            <div id="name_place">House Name:</div>
+        </h3>
+        <h3 id="words">
+            <div id="words_place">Words:</div>
+        </h3>
+        <h3 id="titles">
+                <div id="titles_place">Titles:</div>
+        </h3>
+    </fieldset>
+    <script type="text/javascript">
+        var s = "https://anapioficeandfire.com/api/houses/362"
+        var t = "https://anapioficeandfire.com/api/houses/378"
+        var l = "https://anapioficeandfire.com/api/houses/229"
+        var b = "https://anapioficeandfire.com/api/houses/15"
+        // I used a different House of Baratheon because the house ID 17 was giving CORS policy error
+        
+    $('#stark').click(function() {
+        $.get(s, display)
+    });
+    $('#targ').click(function() {
+        $.get(t, display)
+    });
+    $('#lan').click(function() {
+        $.get(l, display)
+    });
+    $('#bar').click(function() {
+        $.get(b, display)
+    });
+    function display(data) {
+        $('#name_place').remove()
+        $('#name').append("<div id='name_place' >House Name:" + data.name + "</div>")
+        $('#words_place').remove()
+        $('#words').append("<div id='words_place'>Words:" + data.words + "</div>")
+        $('#titles_place').remove()
+        $('#titles').append("<div id='titles_place'>Titles:" + data.titles + "</div>")
+    }
+
+
+
+
+
+    </script>
+</body>
+</html>
