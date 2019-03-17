@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Edit Lion</title>
+</head>
+<body>
+    <% for (var lion in lions) { %>
+    <h1>Edit <%= lions[lion].name %>!</h1>
+    <form action="/<%= lions[lion].id %>" method='post'>
+      Name: <input type="text" name="name" value="<%= lions[lion].name %>">
+      Weight: <input type="text" name="weight" value="<%= lions[lion].weight %>">
+      Color: <input type="text" name="color" value="<%= lions[lion].color %>">
+      <input type="submit" value="Edit lion!">
+    </form>
+    <% } %>
+    <a href="/">Home</a>
+  </body>
+</html>

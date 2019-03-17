@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Star Wars API</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <style>
+    * {
+        text-align: center;
+        font-family: monospace;
+    }
+    button {
+        margin-inline-end: 125px;
+        margin-inline-start: 123px;
+        cursor: pointer;
+        color: yellow;
+        display: inline-block;
+        background-color: rgb(14, 34, 131);
+    }
+    fieldset {
+        margin: auto;
+        max-width: 352px;
+    }
+    form {
+        display: inline-block;
+    }
+    </style>
+</head>
+<body>
+    <h1>Star Wars Wiki</h1>
+    <h3>What would you like to know more about?</h3>
+    <form action="/people">
+        <button id="peopleBtn" name="submit">People</button> 
+    </form>
+    <button id="planetBtn" name="submit">Planets</button>
+    <fieldset><legend>Data</legend>
+    </fieldset>
+    <script>
+       $(document).ready(function(){
+           $('#peopleBtn').click(function(){
+               // let's make the request to our OWN server!
+               $.get('/people', function(data){
+                   // log the data to be sure we have it before we dive into manipulating the DOM
+                   console.log("got the data", data);
+               }, 'json');
+           });
+       });
+   </script>
+</body>
+</html>

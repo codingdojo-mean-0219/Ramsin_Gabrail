@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Lions</title>
+</head>
+<body>
+    <h1>Index Page!</h1>
+    <a href="/new">Create new lion</a>
+    <!-- Display all lions -->
+    <% for (var lion in lions) { %>
+      <p>Name: <a href="/<%= lions[lion]._id %>"><%= lions[lion].name %></a>
+        <a href="/<%= lions[lion]._id %>/edit/"><button>Edit lion</button></a>
+        <form action="/<%= lions[lion]._id %>/delete/" method='post'>
+          <input type="submit" value="Delete">
+        </form>
+      </p>
+    <% } %>
+  </body>
+</html>

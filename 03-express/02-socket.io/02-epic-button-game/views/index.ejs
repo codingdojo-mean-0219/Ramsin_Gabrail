@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+    <title>Epic Button</title>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var socket = io.connect();
+            $('#button').click(function() {
+                socket.emit("posting_count")
+            })
+            $('#resetBtn').click(function(){
+                socket.emit("resetting_count")
+            })
+            socket.on("countDisplay", function(data){
+                console.log(data.count);
+                $("#countDisplay").html(JSON.stringify(data.count));
+            })
+        })
+    </script>
+</head>
+<body>
+    <button id="button">Push The Epic Button!</button>
+    <p id="countDisplay"></p>
+    <button id="resetBtn">Reset!</button>
+</body>
+</html>

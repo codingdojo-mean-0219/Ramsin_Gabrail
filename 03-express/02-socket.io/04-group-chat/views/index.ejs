@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+    <title>Group chat</title>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var socket = io.connect();
+            $('#survey_form').submit(function(e) {
+                e.preventDefault();
+                socket.emit("posting_form", {name: $('#user_name').val()})
+            });
+        });
+    </script>
+</head>
+<body>
+    <h2>Hello! Enter your name to join the chat!</h2>
+    <form action="" id="survey_form">
+        <label for="name">Name:</label>
+        <input type="text" name="name" id="name">
+        <br>
+        <button name="submit">Submit</button>
+    </form>
+
+</body>
+</html>
