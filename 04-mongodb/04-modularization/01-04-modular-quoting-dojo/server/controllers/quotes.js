@@ -9,7 +9,6 @@ module.exports = {
     index: function(req, res) {
         Quote.find({}, function(err,quotes) {
         if (err) { console.log(err); }   
-        console.log(quotes);
         res.render('quotes', {quotes:quotes})
         });
     },
