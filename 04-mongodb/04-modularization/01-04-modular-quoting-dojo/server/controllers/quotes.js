@@ -1,12 +1,9 @@
-const mongoose = require('mongoose')
-mongoose.connect('mongodb://localhost/quoting_dojo');
-
+var mongoose = require('mongoose')
 const quoteSchema = new mongoose.Schema({
     name: String,
     quote: String
   });
-
-const Quote = mongoose.model('quotes', quoteSchema);
+var Quote = mongoose.model('Quote', quoteSchema);
 
 module.exports = {
     index: function(req, res) {
@@ -17,6 +14,7 @@ module.exports = {
         });
     },
     create: function(req, res) {
+        var quote = new Quote({name:req.body.name, quote:req.body.quote});
     	Quote.create(req.body, function(err) {
             if (err) { console.log(err); }
         res.redirect('/quotes')
