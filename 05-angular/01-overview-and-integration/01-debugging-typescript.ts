@@ -100,3 +100,4 @@ var math = (x, y) => {
     return [sum, product, difference]
 };
 console.log(math(3, 7));
+
