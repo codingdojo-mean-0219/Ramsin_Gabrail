@@ -3,12 +3,12 @@ function fib() {
     let b = 1;
    
     function nacci() {
-      const temp = a;
-   
-      console.log(b);
-   
-      a = b;
-      b = b + temp;
+        const temp = a;
+    
+        console.log(b);
+    
+        a = b;
+        b = b + temp;
     }
    
     return nacci
