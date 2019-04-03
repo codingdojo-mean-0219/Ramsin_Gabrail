@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Dojo Query:</title>
+    <script src= 'https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</head>
+<style>
+        button {
+            color: blueviolet;
+            cursor: pointer;
+        }
+        </style>
+<body>
+    <button id="click">Click on me!</button><br><br>
+    <button id="hover">Hello World!</button>
+</body>
+<script>
+function $Dojo(id) {
+    this.myId = document.getElementById(id);
+    this.click = function (callback) {
+        this.myId.addEventListener("click", callback);
+    };
+
+    this.hover = function (hoverin, hoverout) {
+        this.myId.addEventListener("mouseover", hoverin);
+        this.myId.addEventListener("mouseout", hoverout);
+    };
+
+    return this;
+}
+    $Dojo("click").click(function() {
+        console.log("The button was clicked!")});
+    $Dojo("hover").hover(function() { console.log("The button was hovered on!")
+    }, function(){console.log("The cursor has been taken off!")
+    });
+    </script> 
+</html>
