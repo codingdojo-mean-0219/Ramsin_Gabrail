@@ -1,30 +1,61 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML>
+<html lang="en-US">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
-    <title>Group chat</title>
-    <script type="text/javascript">
-        $(document).ready(function(){
-            var socket = io.connect();
-            $('#survey_form').submit(function(e) {
-                e.preventDefault();
-                socket.emit("posting_form", {name: $('#user_name').val()})
-            });
-        });
-    </script>
+  <meta charset="UTF-8">
+  <title>Group Chat Assignment</title>
+  <script type="text/javascript" src="/javascript/jquery.min.js"></script>
+  <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+  <script type="text/javascript">
+  $(document).ready(function() {
+    var socket = io.connect();
+    var current_user;
+
+    var new_user = function() {
+        var name = prompt("Please enter your name to chat");
+        socket.emit("page_load", {user: name});
+    }
+
+    new_user();
+
+    socket.on("existing_user", function(data){
+        $("#error").html(data.error)
+        new_user();
+    })
+
+    socket.on("load_messages", function(data){
+        $("#error").html("") //resetting the error message
+        current_user = data.current_user;
+        var messages = data.messages;
+        var messageThread = "";
+
+        for (var i = 0; i < messages.length; i++){
+            messageThread += "<p>" + messages[i].name + ": " + messages[i].message + "</p>";
+        }   
+
+        $("#board").append(messageThread);
+    })
+
+    $("#new_message").submit(function(){
+        socket.emit("new_message", {message: $("#message").val(), user: current_user})
+        return false;
+    })
+
+    socket.on("post_new_message", function(data) {
+        $("#board").append("<p>" + data.user + ": " + data.new_message + "</p>");
+    })
+  })
+
+  </script>
 </head>
 <body>
-    <h2>Hello! Enter your name to join the chat!</h2>
-    <form action="" id="survey_form">
-        <label for="name">Name:</label>
-        <input type="text" name="name" id="name">
-        <br>
-        <button name="submit">Submit</button>
+  <div id="container">
+    <div id="error"></div>
+    <h2>Conversation Board</h2>
+    <div id="board"></div>
+    <form id="new_message">
+      <input type="text" id="message" placeholder="enter your message here">
+      <input type="submit" value="Send">
     </form>
-
+  </div>
 </body>
 </html>

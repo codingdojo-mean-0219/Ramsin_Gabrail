@@ -1,0 +1,16 @@
+{
+	"first_name": "Saado",
+	"last_name": "Rado",
+	"country": "USA",
+	"birthdate": "5/14/1983",
+	"books": [{"title": "Guitar Master Overnight", "year": 2019}]
+}
+
+
+{
+    "first_name": "James",
+    "last_name": "Gabrail",
+    "country": "USA",
+    "birthdate": "01/18/2019",
+    "books": ["Coding Master", "2019"]
+}
