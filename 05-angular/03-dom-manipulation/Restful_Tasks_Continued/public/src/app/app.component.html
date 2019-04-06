@@ -5,14 +5,14 @@
     <div class="container">
       <h1>Restful Tasks</h1>
   
-    <button (click)="onshowAll()"><h2>Get All Tasks</h2></button>
+ <h2>Here Are All The Tasks</h2>
   
-    <div *ngIf="showAll">
+
     <div *ngFor="let task of tasks">
       <p>{{ task.title }} <button (click)="showTask(task)">Show Task</button></p>
     </div>
-   </div>
-  
+
+  <h3>Here is the requested task</h3>
     <div *ngIf="showing">
       <p>Task: {{ showing.title }}</p>
       <p>Description: {{showing.description}}</p>

@@ -17,20 +17,18 @@ export class AppComponent implements OnInit {
     this.showing =obj
     ;}
 
-  constructor(private _httpService: HttpService){}
-  ngOnInit() {
+  constructor(private _httpService: HttpService){
   }
-  onshowAll() {
-     console.log("showing all tasks");
+  ngOnInit() {
     this.getTasksFromService()
-   }
+  }
   getTasksFromService(){
     let observable = this._httpService.getTasks();
     observable.subscribe(data => {
-       this.tasks = data;
-       console.log(data);
-       console.log(this.tasks," These are the tasks");
-       this.showAll = true
+      this.tasks = data;
+      console.log(data);
+      console.log(this.tasks," These are the tasks");
+      this.showAll = true
     });
   }
 
